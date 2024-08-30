@@ -19,6 +19,6 @@ let lista = []
             let li = document.createElement("li")
             li.textContent = element;
 
-            ul.appendChild(li);
+            ul.append(li);
         });
     }
