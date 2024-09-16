@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex1 - semana 4</title>
+    <script src="../js/main.js" defer></script>
+</head>
+
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        padding: 0 20px 0 20px;
+        font-family: Helvetica;
+    }
+
+    form {
+        border: 1px solid black;
+        padding: 10px 30px 10px 30px;
+        width: 600px;
+    }
+
+    .titulo {
+        font-size: 26px;
+        text-align: start;
+        color: #000;
+    }
+
+    input {
+        padding: 5px 0 5px 0;
+        margin-top: 5px;
+        border: none;
+        border-bottom: solid 1px #ccc;
+        font-size: 12px;
+        color: #999;
+    }
+
+    label {
+        font-size: 10px;
+        color: #222;
+        opacity: 0.9;
+    }
+
+    #nome,
+    #lattes {
+        width: 100%;
+    }
+
+    #div-email {
+        width: 60%;
+    }
+
+    #div-area,
+    #div-matricula,
+    #div-curso,
+    .div-matricula {
+        width: 48%;
+    }
+
+    #email,
+    #area,
+    #curso,
+    .matricula {
+        width: 100%;
+    }
+
+    .div {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .div-fone {
+        width: 35%;
+    }
+
+    .fone {
+        width: 90%;
+    }
+
+    .mt {
+        margin-top: 20px;
+    }
+
+    .mt2 {
+        margin-top: 40px;
+        text-align: center;
+    }
+
+    button {
+        font-size: 12px;
+        background-color: #eee;
+        border: #aaa;
+        border-radius: 4px;
+        padding: 10px;
+    }
+
+    .hide {
+        display: none;
+    }
+
+    .error-message {
+        font-size: 10px;
+        color: red;
+        display: none;
+    }
+
+    .error {
+        border-bottom: solid 1px red;
+    }
+</style>
+
+<body>
+    <section>
+        <form id="formulario" action="" class="">
+            <h2 class="titulo">Formulário de Cadastro:</h2>
+            <div>
+                <label for="nome">Nome:</label>
+                <input id="nome" type="text" placeholder="Digite seu nome completo">
+                <span class="error-message" id="error-nome">O nome é obrigatório.</span>
+            </div>
+            <div class="div mt">
+                <div id="div-email">
+                    <label for="email">Email:</label><br>
+                    <input id="email" type="email" placeholder="nome@gmail.com" required>
+                    <span class="error-message" id="error-email">O email é obrigatório.</span>
+                </div>
+                <div>
+                    <label for="nasc">Data de nascimento:</label><br>
+                    <input id="nasc" type="date">
+                    <span class="error-message" id="error-nasc">A data de nascimento é obrigatória.</span>
+                </div>
+            </div>
+
+            <div class="div mt">
+                <div class="div-fone">
+                    <label for="fixo">Fone fixo:</label><br>
+                    <input id="fixo" class="fone" type="text" placeholder="(99)9999-9999">
+                    <span class="error-message" id="error-fixo">O telefone fixo é obrigatório.</span>
+                </div>
+                <div class="div-fone">
+                    <label for="celular">Fone celular:</label><br>
+                    <input id="celular" class="fone" type="text" placeholder="(99)99999-9999">
+                    <span class="error-message" id="error-celular">O celular é obrigatório.</span>
+                </div>
+                <div>
+                    <div>
+                        <label for="prof">Professor</label>
+                        <input id="prof" name="cargo" type="radio" value="prof" checked>
+                    </div>
+                    <div>
+                        <label for="aluno">Aluno</label>
+                        <input id="aluno" name="cargo" type="radio" value="aluno">
+                    </div>
+                </div>
+            </div>
+
+            <!-- DIV DO PROFESSOR -->
+            <div id="div-prof">
+                <div class="mt div">
+                    <div id="div-area">
+                        <label for="area">Área:</label><br>
+                        <input id="area" type="text" placeholder="Digite sua atuação">
+                        <span class="error-message" id="error-area">A área de atuação é obrigatória.</span>
+                    </div>
+                    <div class="div-matricula">
+                        <label for="matricula-prof">Matrícula:</label><br>
+                        <input id="matricula-prof" class="matricula" type="text" placeholder="Digite sua matrícula">
+                        <span class="error-message" id="error-matricula-prof">A matrícula é obrigatória.</span>
+                    </div>
+                </div>
+
+                <div class="mt">
+                    <div>
+                        <label for="lattes">Lattes:</label><br>
+                        <input id="lattes" type="text" placeholder="Digite aqui o endereço para o seu lattes">
+                        <span class="error-message" id="error-lattes">O Lattes é obrigatório.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FIM DA DIV PROFESSOR -->
+
+            <!-- DIV DO ALUNO -->
+            <div id="div-aluno" class="mt div hide">
+                <div id="div-curso">
+                    <label for="curso">Curso:</label><br>
+                    <input id="curso" type="text" placeholder="Digite seu curso">
+                    <span class="error-message" id="error-curso">O curso é obrigatório.</span>
+                </div>
+                <div class="div-matricula">
+                    <label for="matricula-aluno">Matrícula:</label><br>
+                    <input id="matricula-aluno" class="matricula" type="text" placeholder="Digite sua matrícula">
+                    <span class="error-message" id="error-matricula-aluno">A matrícula é obrigatória.</span>
+                </div>
+            </div>
+            <!-- FIM DA DIV ALUNO -->
+
+            <div class="mt2">
+                <button type="submit">Enviar</button>
+                <button type="reset">Redefinir</button>
+            </div>
+
+        </form>
+    </section>
+</body>
+
+</html>
