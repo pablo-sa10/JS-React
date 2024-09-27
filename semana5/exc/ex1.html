@@ -18,7 +18,8 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
+        margin-top: 100px;
+        margin-bottom: 100px;
     }
 </style>
 
@@ -39,35 +40,98 @@
                 </div>
             </div>
 
-            <div>
-                <!-- TAREFAS -->
-
+            <div id="tarefas" class="mt-4">
+                <!-- Tarefas -->
             </div>
+            
         </div>
     </section>
 </body>
 
 <script>
 
-    class Tarefa{
-        constructor(nome, descricao, status){
-            this.nome;
-            this.descricao;
-            this.status;
+    class Tarefa {
+        constructor(nome, descricao) {
+            this.nome = nome;
+            this.descricao = descricao;
+            this.status = 'pendente';
         }
 
-        concluir(){
-
+        concluir() {
+            this.status = 'concluída';
         }
 
-        detalhes(){
-
+        detalhes() {
+            return `Nome: ${this.nome}\nDescrição: ${this.descricao}\nStatus: ${this.status}`;
         }
     }
 
-    class GerenciadorTarefas{
-        
+    class GerenciadorTarefas {
+        constructor() {
+            this.tarefas = []; 
+        }
+
+        adicionarTarefa(tarefa) {
+            this.tarefas.push(tarefa); 
+            this.listarTarefas(); 
+        }
+
+        listarTarefas() {
+            const tarefasDiv = document.querySelector('#tarefas');
+            tarefasDiv.innerHTML = ''; 
+
+            this.tarefas.forEach((tarefa, index) => {
+                const tarefaItem = document.createElement('div');
+                tarefaItem.classList.add('tarefa', 'mb-3', 'p-2', 'border', 'border-dark', 'rounded');
+
+                tarefaItem.innerHTML = `
+                <h5>${tarefa.nome}</h5>
+                <p>${tarefa.descricao}</p>
+                <p>Status: <strong>${tarefa.status}</strong></p>
+                <button class="btn btn-primary me-2" onclick="gerenciador.visualizarDetalhes(${index})">Visualizar Detalhes</button>
+                <button class="btn btn-success me-2" onclick="gerenciador.marcarComoConcluida(${index})">Concluir Tarefa</button>
+                <button class="btn btn-danger" onclick="gerenciador.removerTarefa(${index})">Remover Tarefa</button>
+            `;
+
+                tarefasDiv.appendChild(tarefaItem);
+            });
+        }
+
+        marcarComoConcluida(index) {
+            this.tarefas[index].concluir();
+            this.listarTarefas(); 
+        }
+
+        removerTarefa(index) {
+            this.tarefas.splice(index, 1); 
+            this.listarTarefas(); 
+        }
+
+        visualizarDetalhes(index) {
+            alert(this.tarefas[index].detalhes()); 
+        }
     }
+
+    // Instância do gerenciador de tarefas
+    const gerenciador = new GerenciadorTarefas();
+
+    // Evento para salvar uma nova tarefa
+    document.querySelector('#salvar').addEventListener('click', () => {
+        const nome = document.querySelector('input[type="text"]').value;
+        const descricao = document.querySelector('textarea').value;
+
+        if (nome && descricao) {
+            const novaTarefa = new Tarefa(nome, descricao);
+            gerenciador.adicionarTarefa(novaTarefa);
+
+            // Limpa os campos após salvar
+            document.querySelector('input[type="text"]').value = '';
+            document.querySelector('textarea').value = '';
+        } else {
+            alert('Por favor, preencha todos os campos.');
+        }
+    });
+
 
 
 </script>
