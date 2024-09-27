@@ -1,9 +1,24 @@
+//variaveis para a logica do checkbox
 const formulario = document.getElementById('formulario');
 const inputs = document.querySelectorAll('input');
 const radioProf = document.getElementById('prof');
 const radioAluno = document.getElementById('aluno');
 const divProf = document.getElementById('div-prof');
 const divAluno = document.getElementById('div-aluno');
+
+//variaveis para a o envio do form e armazenar dados na classe
+const enviar = document.getElementById('enviar').value;
+console.log(enviar)
+let nome = document.getElementById('nome').value;
+let email = document.getElementById('email').value;
+let nasc = document.getElementById('nasc').value;
+let fixo = document.getElementById('fixo').value;
+let celular = document.getElementById('celular').value;
+let area = document.getElementById('area').value;
+let matriculaProf = document.getElementById('matricula-prof').value;
+let lattes = document.getElementById('lattes').value;
+let curso = document.getElementById('curso').value;
+let matriculaAluno = document.getElementById('matricula-aluno').value;
 
 function toggleDivs() {
     if (radioProf.checked) {
@@ -41,19 +56,19 @@ inputs.forEach(input => {
     input.addEventListener('blur', () => validarCampo(input));
 });
 
-formulario.addEventListener('submit', function (event) {
-    event.preventDefault(); // Impede o reload da página
-    let formularioValido = true;
-    inputs.forEach(input => {
-        if (!validarCampo(input)) {
-            formularioValido = false;
-        }
-    });
-    if (formularioValido) {
-        // Se o formulário for válido, você pode submetê-lo manualmente
-        formulario.submit();
-    }
-});
+// enviar.addEventListener('click', (e)=> {
+//     e.preventDefault();
+//     let formularioValido = true;
+//     inputs.forEach(input => {
+//         if (!validarCampo(input)) {
+//             formularioValido = false;
+//         }
+//     });
+//     if (formularioValido) {
+        
+//         console.log(nome, email, nasc, fixo, celular)
+//     }
+// })
 
 function formatarTelefone(input) {
     let valor = input.value.replace(/\D/g, '');
